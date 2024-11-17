@@ -55,5 +55,52 @@ Date.prototype.getWeekNumber = function () {
     return Math.ceil((numberOfDays + oneJan.getDay() + 1) / 7);
 };
 
+// access largest expense
+function getBiggestExpense(transactions) {
+    return transactions.reduce((max, transaction) =>
+        transaction.amount > max.amount ? transaction : max
+    );
+}
 
-displayTips();
+// find biggest category
+function getBiggestCategory(transactions) {
+    const categoryTotals = transactions.reduce((totals, transaction) => {
+        if (!totals[transaction.category]) {
+            totals[transaction.category] = 0;
+        }
+        totals[transaction.category] += transaction.amount;
+        return totals;
+    }, {});
+
+    // Find the category with the largest total
+    return Object.entries(categoryTotals).reduce((max, category) =>
+        category[1] > max[1] ? category : max
+    );
+}
+
+function displaySpendingInsights(transactions) {
+    const biggestExpense = getBiggestExpense(transactions);
+    const biggestCategory = getBiggestCategory(transactions);
+
+    document.getElementById('biggest-expense').textContent = 
+        `${biggestExpense.item} ($${biggestExpense.amount})`;
+
+    document.getElementById('biggest-category').textContent = 
+        `${biggestCategory[0]} ($${biggestCategory[1]})`;
+}
+
+const expenseData = {
+    transactions: [
+        { item: 'Laptop', amount: 1200, category: 'Electronics' },
+        { item: 'Groceries', amount: 300, category: 'Food' },
+        { item: 'Dining Out', amount: 150, category: 'Food' },
+        { item: 'New Shoes', amount: 80, category: 'Clothing' }
+    ]
+};
+
+// Example Usage
+window.onload = function () {
+    displaySpendingInsights(expenseData.transactions);
+    displayTips();
+};
+
