@@ -89,11 +89,6 @@ main {
   position: relative;
 }
 
-#tips-list {
-  width: 75%;
-  margin: 0 auto;
-}
-
 .right-image {
   position: absolute;
   right: 10px; 
