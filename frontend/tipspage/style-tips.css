@@ -133,3 +133,9 @@ main {
 .social-logo:hover {
   opacity: 0.8;
 }
+
+#addTipButton {
+  font-family: Georgia, serif;
+  border-color: #2c5445;
+  background-color: #c3d1a7;
+}

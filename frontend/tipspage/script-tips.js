@@ -1,5 +1,5 @@
 // list of different tips that are helpful to financial wellness
-const allTips = ['50-30-20 Rule: 50% of paycheck should go to regular expenses;\n 30% should go to personal expenses; 20% should go to savings',
+const allTips = ['50-30-20 Rule: 50% of paycheck -> regular expenses; 30% -> personal expenses; 20% -> savings',
     'Go shopping with a list to prevent overspending',
     "Don't succumb to the instant gratification of spending (think it over)",
     'Track all of your spending in our app',
