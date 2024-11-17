@@ -13,6 +13,18 @@ const allTips = ['50-30-20 Rule: 50% of paycheck should go to regular expenses; 
     'Take advantage of free public resources'
 ]
 
+// access the user-generated tips
+function getUserTips(){
+    const userTips = localStorage.getItem('userTips');
+    return
+}
+
+function addUserTip(tip){
+    const userTips = getUserTips();
+    userTips.push(tip);
+    localStorage.setItem('userTips', JSON.stringify(userTips));
+    allTips.push(tip);
+}
 
 // shuffle the list of tips
 function shuffleTips(array) {
@@ -89,8 +101,17 @@ function displaySpendingInsights(transactions) {
         `${biggestCategory[0]} ($${biggestCategory[1]})`;
 }
 
-// Example Usage
+// when page loads display tips
 window.onload = function () {
     displayTips();
 };
 
+document.getElementById('addTipButton').addEventListener('click', function() {
+    const tipInput = document.getElementById('newTip');
+    const addedTip = tipInput.value;
+
+    if (addedTip) {
+        addUserTip(addedTip);
+        tipInput.value = '';
+    }
+});
