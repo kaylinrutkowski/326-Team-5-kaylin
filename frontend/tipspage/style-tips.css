@@ -1,0 +1,135 @@
+body {
+    font-family: Georgia, serif;
+    background-color: #f0f4e8;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  border-right: 2px solid #2c5445;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar a {
+  color: #2c5445;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 10px;
+  background-color: #2c5445;
+  color: #f5f2e8;
+  border: none;
+  cursor: pointer;
+  font-family: serif;
+  font-size: 16px;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.main-content {
+  flex: 3; 
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+}
+
+.side-container {
+  flex: 1; 
+  background-color: #f5f7f1;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #2c5445;
+}
+
+.content-box {
+  background-color: #f5f7f1;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #2c5445;
+}
+
+.box {
+  position: relative;
+  width: 300px; 
+  height: 150px;
+  border: 1px solid #000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#tips {
+  position: relative;
+}
+
+.right-image {
+  position: absolute;
+  right: 10px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 200px;
+}
+
+#influencer-links {
+  list-style-type: none; /* Removes default bullet points */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+#influencer-links li {
+  margin-bottom: 15px; /* Adds spacing between list items */
+}
+
+#influencer-links span {
+  font-weight: bold; /* Makes the influencer's name bold */
+  display: block; /* Places the name on its own line */
+}
+
+.description {
+  color: gray; /* Sets a different color for the description */
+  margin-top: 5px; /* Adds space between name and description */
+  font-size: 0.9em; /* Reduces the font size of the description */
+}
+
+.social-icons {
+  margin-top: 10px; /* Adds spacing above the social media icons */
+  display: flex; /* Aligns icons in a horizontal row */
+  gap: 10px; /* Adds spacing between icons */
+}
+
+.social-logo {
+  width: 32px; /* Sets the width of the icons */
+  height: 32px; /* Sets the height of the icons */
+  transition: opacity 0.2s ease-in-out; /* Adds a smooth transition */
+}
+
+.social-logo:hover {
+  opacity: 0.8; /* Adds a hover effect */
+}
