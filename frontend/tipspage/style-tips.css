@@ -59,6 +59,13 @@ main {
   gap: 20px; 
 }
 
+#addTipButton {
+  font-family: Georgia, serif;
+  border-color: #2c5445;
+  background-color: #cfd6c1;
+  border-radius: 5px;
+}
+
 .side-container {
   flex: 1; 
   background-color: #f5f7f1;
@@ -132,11 +139,4 @@ main {
 
 .social-logo:hover {
   opacity: 0.8;
-}
-
-#addTipButton {
-  font-family: Georgia, serif;
-  border-color: #2c5445;
-  background-color: #cfd6c1;
-  border-radius: 5px;
 }
