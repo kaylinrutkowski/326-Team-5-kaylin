@@ -137,5 +137,6 @@ main {
 #addTipButton {
   font-family: Georgia, serif;
   border-color: #2c5445;
-  background-color: #c3d1a7;
+  background-color: #dce6c9;
+  border-radius: 5px;
 }
