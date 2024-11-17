@@ -89,18 +89,8 @@ function displaySpendingInsights(transactions) {
         `${biggestCategory[0]} ($${biggestCategory[1]})`;
 }
 
-const expenseData = {
-    transactions: [
-        { item: 'Laptop', amount: 1200, category: 'Electronics' },
-        { item: 'Groceries', amount: 300, category: 'Food' },
-        { item: 'Dining Out', amount: 150, category: 'Food' },
-        { item: 'New Shoes', amount: 80, category: 'Clothing' }
-    ]
-};
-
 // Example Usage
 window.onload = function () {
-    displaySpendingInsights(expenseData.transactions);
     displayTips();
 };
 
