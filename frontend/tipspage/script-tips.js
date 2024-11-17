@@ -16,14 +16,14 @@ const allTips = ['50-30-20 Rule: 50% of paycheck should go to regular expenses; 
 // access the user-generated tips
 function getUserTips(){
     const userTips = localStorage.getItem('userTips');
-    return
+    return userTips ? JSON.parse(userTips) : [];
 }
 
+// add the user tips to the tip list
 function addUserTip(tip){
     const userTips = getUserTips();
     userTips.push(tip);
     localStorage.setItem('userTips', JSON.stringify(userTips));
-    allTips.push(tip);
 }
 
 // shuffle the list of tips
@@ -32,7 +32,17 @@ function shuffleTips(array) {
 }
 
 // get the tips for the week
-function getWeeklyTips() {
+function getWeeklyTips(forceRefresh = false) {
+    const userTips = getUserTips();
+
+    const ALLtips = [...allTips, ...userTips];
+    // when refresh button is clicked, will shuffle tips regardless of day
+    if (forceRefresh) {
+        const shuffledTips = shuffleTips(ALLtips).slice(0,3);
+        localStorage.setItem('weeklyTips', JSON.stringify(shuffledTips));
+        return shuffledTips;
+    }
+
     const lastTips = localStorage.getItem('weeklyTips');
     const lastWeek = localStorage.getItem('week');
 
@@ -49,9 +59,9 @@ function getWeeklyTips() {
 }
 
 // display the tips for the week
-function displayTips(){
+function displayTips(refresh = false){
     const tipsList = document.getElementById('tips-list');
-    const weeklyTips = getWeeklyTips();
+    const weeklyTips = getWeeklyTips(refresh);
 
     tipsList.innerHTML = '';
     weeklyTips.forEach(tip => {
@@ -67,45 +77,12 @@ Date.prototype.getWeekNumber = function () {
     return Math.ceil((numberOfDays + oneJan.getDay() + 1) / 7);
 };
 
-// access largest expense
-function getBiggestExpense(transactions) {
-    return transactions.reduce((max, transaction) =>
-        transaction.amount > max.amount ? transaction : max
-    );
-}
-
-// find biggest category
-function getBiggestCategory(transactions) {
-    const categoryTotals = transactions.reduce((totals, transaction) => {
-        if (!totals[transaction.category]) {
-            totals[transaction.category] = 0;
-        }
-        totals[transaction.category] += transaction.amount;
-        return totals;
-    }, {});
-
-    // Find the category with the largest total
-    return Object.entries(categoryTotals).reduce((max, category) =>
-        category[1] > max[1] ? category : max
-    );
-}
-
-function displaySpendingInsights(transactions) {
-    const biggestExpense = getBiggestExpense(transactions);
-    const biggestCategory = getBiggestCategory(transactions);
-
-    document.getElementById('biggest-expense').textContent = 
-        `${biggestExpense.item} ($${biggestExpense.amount})`;
-
-    document.getElementById('biggest-category').textContent = 
-        `${biggestCategory[0]} ($${biggestCategory[1]})`;
-}
-
 // when page loads display tips
 window.onload = function () {
     displayTips();
 };
 
+// listen to click of tip button and add to the tips
 document.getElementById('addTipButton').addEventListener('click', function() {
     const tipInput = document.getElementById('newTip');
     const addedTip = tipInput.value;
@@ -115,3 +92,7 @@ document.getElementById('addTipButton').addEventListener('click', function() {
         tipInput.value = '';
     }
 });
+
+document.getElementById('cashRefresh').addEventListener('click', function(){
+    displayTips(true);
+})
